@@ -4,12 +4,12 @@
     -This function has [insert time complexity], because [some line of code] means [something describing the nature of the implementation]
 */
 var TimeComplexity = {
-  FIX_ME: 'wrong answer',
-  CONSTANT: 'constant',
-  LOGARITHMIC: 'logarithmic',
-  LINEAR: 'linear',
-  QUADRATIC: 'quadratic',
-  EXPONENTIAL: 'exponential'
+  FIX_ME: "wrong answer",
+  CONSTANT: "constant",
+  LOGARITHMIC: "logarithmic",
+  LINEAR: "linear",
+  QUADRATIC: "quadratic",
+  EXPONENTIAL: "exponential"
 };
 exports.TimeComplexity = TimeComplexity;
 
@@ -19,48 +19,45 @@ exports.TimeComplexity = TimeComplexity;
  * Complexity:
  */
 
-exports.sumSquaresTimeComplexity = TimeComplexity.FIX_ME; // TODO: Update this constant
+exports.sumSquaresTimeComplexity = TimeComplexity.LINEAR; // TODO: Update this constant
 
 var sumSquares = function(array) {
   return array.reduce(function(memo, val) {
-    return memo + (Math.pow(val, 2));
+    return memo + Math.pow(val, 2);
   });
-};
-
+}; //O(lg(exponent))/*END SOLUTION*/
 
 // Problem 2: Calculate the n-th power of given number.
 
 /*
  * Complexity:
  */
-/*START SOLUTION*///O(lg(exponent))/*END SOLUTION*/
-exports.nthPowerTimeComplexity = TimeComplexity.FIX_ME; // TODO: Update this constant
+/*START SOLUTION*/ exports.nthPowerTimeComplexity = TimeComplexity.LOGARITHMIC; // TODO: Update this constant
 
 var nthPower = function(base, exponent) {
   // Base case:
   if (exponent === 0) {
     return 1;
-  // If exponent is odd
+    // If exponent is odd
   } else if (exponent % 2 !== 0) {
     return base * nthPower(base, exponent - 1);
-  // If exponent is even
+    // If exponent is even
   } else {
     return nthPower(base * base, exponent / 2);
   }
-};
-
+}; //O(3^n)/*END SOLUTION*/
 
 // Problem 3: Generate every sequence of throws for an n-round rock-paper-scissors game.
 
 /*
  * Complexity:
  */
-/*START SOLUTION*///O(3^n)/*END SOLUTION*/
-exports.rockPaperScissorsTimeComplexity = TimeComplexity.FIX_ME; // TODO: Update this constant
+/*START SOLUTION*/ exports.rockPaperScissorsTimeComplexity =
+  TimeComplexity.EXPONENTIAL; // TODO: Update this constant
 
 var rockPaperScissors = function(rounds) {
   var sequences = [];
-  var plays = ['rock', 'paper', 'scissors'];
+  var plays = ["rock", "paper", "scissors"];
 
   var generate = function(sequence, round) {
     // Base case:
