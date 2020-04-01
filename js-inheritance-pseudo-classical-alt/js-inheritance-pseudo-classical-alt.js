@@ -5,8 +5,8 @@
 // You must be able to use your new functions to create new horse instances,
 // just like this:
 //
-//   var myHorse = new Horse();
-//   var myFlyingHorse = new FlyingHorse();
+// var myHorse = new Horse();
+// var myFlyingHorse = new FlyingHorse();
 //
 
 // DO NOT MODIFY FUNCTIONS 'makeHorse' AND 'makeFlyingHorse'
@@ -16,7 +16,7 @@ var makeHorse = function(name) {
   var result = {};
   result.name = name;
   result.goSomewhere = function(destination) {
-    return name + ' is galloping to ' + destination + '!';
+    return name.bind(this) + " is galloping to " + destination + "!";
   };
   return result;
 };
@@ -27,9 +27,9 @@ var makeFlyingHorse = function(name, color) {
   var oldGoSomewhere = result.goSomewhere;
   result.goSomewhere = function(destination, milesToDestination) {
     if (milesToDestination < 10) {
-      return oldGoSomewhere(destination);
+      return oldGoSomewhere.bind(this)(destination);
     } else {
-      return name + ' is flying to ' + destination + '!';
+      return name + " is flying to " + destination + "!";
     }
   };
   return result;
@@ -40,17 +40,49 @@ var makeFlyingHorse = function(name, color) {
 
 var Horse = function(name) {
   //TODO:
+  this.name = name;
 };
 
-
+Horse.prototype.goSomewhere = function(destination) {
+  // this.destination = destination;
+  return this.name + " is galloping to " + destination + "!";
+};
 
 var FlyingHorse = function(name, color) {
   //TODO:
+  Horse.apply(this, arguments);
+  // Horse.call(this, name);
+  this.color = color;
+
+  // this.goSomewhere = function(destination, milesToDestination) {
+  //   if (milesToDestination < 10) {
+  //     return Horse.prototype.goSomewhere(milesToDestination);
+  //   } else {
+  //     return this.name + " is flying to " + destination + "!";
+  //   }
+  // };
+};
+
+FlyingHorse.prototype = Object.create(Horse.prototype);
+
+FlyingHorse.prototype.constructor = FlyingHorse;
+
+FlyingHorse.prototype.goSomewhere = function(destination, milesToDestination) {
+  var oldGoSomewhere = Horse.prototype.goSomewhere.bind(this);
+  if (milesToDestination < 10) {
+    return oldGoSomewhere(destination); // 왜 이걸 miles라고 생각했지?..
+  } else {
+    return this.name + " is flying to " + destination + "!";
+  }
 };
 
 // TODO:
 
+var myHorse = new Horse();
+
+var myFlyingHorse = new FlyingHorse();
+
 module.exports = {
   Horse,
   FlyingHorse
-}
+};
