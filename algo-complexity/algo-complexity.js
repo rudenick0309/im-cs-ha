@@ -16,7 +16,7 @@ exports.TimeComplexity = TimeComplexity;
 // Problem 1: Sum the squares of the values in a given array.
 
 /*
- * Complexity:
+ * Complexity: 엘리먼트가 하나 추가 될 수록, 처리해야 할 단계가 비례적으로 증가하기 때문입니다.
  */
 
 exports.sumSquaresTimeComplexity = TimeComplexity.LINEAR; // TODO: Update this constant
@@ -30,7 +30,9 @@ var sumSquares = function(array) {
 // Problem 2: Calculate the n-th power of given number.
 
 /*
- * Complexity:
+ * Complexity: 로가리즘의 정확한 설명은 어렵습니다. 다만, constant가 아니고, 엘리먼트(처리해야 할 원소)가 늘어날 수록,
+                              단계가 비례적으로 상승하는 것은 아니라고 생각했습니다. 그래서, linear는 아니라고 생각했습니다.
+                              constant보다는 크지만, linear보다는 작다고 생각하여 로가리즘이라고 선택했습니다.
  */
 /*START SOLUTION*/ exports.nthPowerTimeComplexity = TimeComplexity.LOGARITHMIC; // TODO: Update this constant
 
@@ -50,7 +52,7 @@ var nthPower = function(base, exponent) {
 // Problem 3: Generate every sequence of throws for an n-round rock-paper-scissors game.
 
 /*
- * Complexity:
+ * Complexity: 라운드가 1게임 증가할 때, 처리해야 할 단계가 지수적으로 증가하기 때문입니다.
  */
 /*START SOLUTION*/ exports.rockPaperScissorsTimeComplexity =
   TimeComplexity.EXPONENTIAL; // TODO: Update this constant
